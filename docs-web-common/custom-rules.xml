@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<ruleset name="Custom PMD Rules for Teedy"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>自定义规则集，包含课程要求的 5 个指标检查</description>
+
+    <!-- 代码行数（LoC） -->
+    <rule ref="category/java/design.xml/NcssCount" >
+        <description>检查代码行数</description>
+    </rule>
+
+    <!-- 圈复杂度（CC） -->
+    <rule ref="category/java/design.xml/CyclomaticComplexity">
+        <description>方法的圈复杂度检查</description>
+    </rule>
+
+    <!-- 加权方法数（WMC） -->
+    <rule ref="category/java/design.xml/GodClass">
+        <description>检查类的加权方法数是否过高（WMC）</description>
+    </rule>
+
+    <!-- 对象间耦合度（CBO） -->
+    <rule ref="category/java/design.xml/CouplingBetweenObjects">
+        <description>检查类与其他对象的耦合度（CBO）</description>
+    </rule>
+
+    <!-- 方法缺乏内聚性（LCOM） -->
+    <rule ref="category/java/design.xml/LoosePackageCoupling">
+        <description>检查类的方法内聚性（LCOM）</description>
+    </rule>
+</ruleset>
