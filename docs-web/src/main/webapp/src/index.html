@@ -159,6 +159,11 @@
               <span class="fas fa-cog"></span> {{ 'index.nav_settings' | translate }}
             </a>
           </li>
+          <li ui-sref-active="{ active: 'settings.**' }" ng-show="userInfo.username != 'admin'">
+            <a href="#/settings/account">
+              <span class="fas fa-cog"></span> {{ 'index.nav_settings' | translate }}
+            </a>
+          </li>
           <li>
             <a href="#" ng-click="logout($event)">
               <span class="fas fa-power-off"></span> {{ 'index.logout' | translate }}
