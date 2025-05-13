@@ -1,0 +1,39 @@
+<h1>
+    <span>新用户管理</span>
+  </h1>
+  
+  <div class="row">
+    <div class="col-md-12 well">
+      <table class="table table-hover table-users">
+        <thead>
+          <tr>
+            <th>用户名</th>
+            <th>创建日期</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="user in users | orderBy: 'username'"
+              ng-class="{ active: $stateParams.username == user.username }">
+            <td>
+              <span ng-if="user.disabled">{{ user.username }}</span>
+              <span class="fas fa-lock" ng-show="user.totp_enabled" uib-tooltip="已启用双因素认证"></span>
+            </td>
+            <td>{{ user.create_date | date: dateFormat }}</td>
+            <td>
+            <button class="btn btn-success btn-sm" ng-click="approve(user)">
+                <span class="fas fa-check"></span> 批准
+            </button>
+            <button class="btn btn-danger btn-sm" ng-click="reject(user)">
+                <span class="fas fa-times"></span> 拒绝
+            </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div class="col-md-8">
+      <div ui-view="user"></div>
+    </div>
+  </div>
