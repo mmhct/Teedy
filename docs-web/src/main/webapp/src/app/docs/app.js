@@ -163,6 +163,15 @@ angular.module('docs',
         }
       }
     })
+    .state('settings.user2', {
+      url: '/user2',
+      views: {
+        'settings': {
+          templateUrl: 'partial/docs/settings.user2.html',
+          controller: 'SettingsUser'
+        }
+      }
+    })
     .state('settings.user.edit', {
       url: '/edit/:username',
       views: {
