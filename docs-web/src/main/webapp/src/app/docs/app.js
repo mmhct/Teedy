@@ -168,7 +168,16 @@ angular.module('docs',
       views: {
         'settings': {
           templateUrl: 'partial/docs/settings.user2.html',
-          controller: 'SettingsUser'
+          controller: 'Register'
+        }
+      }
+    })
+    .state('settings.request', {
+      url: '/request',
+      views: {
+        'settings': {
+          templateUrl: 'partial/docs/settings.request.html',
+          controller: 'SettingsRequest'
         }
       }
     })
