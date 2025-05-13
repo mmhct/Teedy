@@ -1,80 +1,79 @@
 <h1>
-    <span >注册</span>
-  </h1>
-  
-  <div class="col-md-8">
-    <div ui-view="user">
-      <h2 translate="settings.user.edit.add_user_title"></h2>
-  
-      <form class="form-horizontal" name="registerForm" novalidate autocomplete="off">
-        <!-- Username -->
-        <div class="form-group" ng-class="{ 'has-error': !registerForm.userUsername.$valid && registerForm.$dirty, success: registerForm.userUsername.$valid }">
-          <label class="col-sm-2 control-label" for="inputUserUsername">{{ 'settings.user.edit.username' | translate }}</label>
-          <div class="col-sm-7">
-            <input name="userUsername" type="text" id="inputUserUsername" required class="form-control"
-                   ng-pattern="/^[a-zA-Z0-9_@.-]*$/"
-                   ng-minlength="3" ng-maxlength="50" ng-attr-placeholder="{{ 'settings.user.edit.username' | translate }}" ng-model="user.username"/>
-          </div>
-          <div class="col-sm-3">
-            <span class="help-block" ng-show="registerForm.userUsername.$error.required && registerForm.$dirty">{{ 'validation.required' | translate }}</span>
-            <span class="help-block" ng-show="registerForm.userUsername.$error.minlength && registerForm.$dirty">{{ 'validation.too_short' | translate }}</span>
-            <span class="help-block" ng-show="registerForm.userUsername.$error.maxlength && registerForm.$dirty">{{ 'validation.too_long' | translate }}</span>
-            <span class="help-block" ng-show="registerForm.userUsername.$error.pattern && registerForm.$dirty">{{ 'validation.alphanumeric' | translate }}</span>
-          </div>
+    <span>注册</span>
+</h1>
+
+<div class="col-md-8">
+  <div ui-view="user">
+    <h2>添加新用户</h2>
+
+    <form class="form-horizontal" name="registerForm" novalidate autocomplete="off">
+      <!-- 用户名 -->
+      <div class="form-group" ng-class="{ 'has-error': !registerForm.userUsername.$valid && registerForm.$dirty, success: registerForm.userUsername.$valid }">
+        <label class="col-sm-2 control-label" for="inputUserUsername">用户名</label>
+        <div class="col-sm-7">
+          <input name="userUsername" type="text" id="inputUserUsername" required class="form-control"
+                 ng-pattern="/^[a-zA-Z0-9_@.-]*$/"
+                 ng-minlength="3" ng-maxlength="50" placeholder="用户名" ng-model="user.username"/>
         </div>
-  
-        <!-- Email -->
-        <div class="form-group" ng-class="{ 'has-error': !registerForm.userEmail.$valid && registerForm.$dirty, success: registerForm.userEmail.$valid }">
-          <label class="col-sm-2 control-label" for="inputEmail">{{ 'settings.user.edit.email' | translate }}</label>
-          <div class="col-sm-7">
-            <input name="userEmail" type="email" id="inputEmail" required class="form-control"
-                   ng-minlength="1" ng-maxlength="100" ng-attr-placeholder="{{ 'settings.user.edit.email' | translate }}" ng-model="user.email"/>
-          </div>
-          <div class="col-sm-3">
-            <span class="help-block" ng-show="registerForm.userEmail.$error.required && registerForm.$dirty">{{ 'validation.required' | translate }}</span>
-            <span class="help-block" ng-show="registerForm.userEmail.$error.email && registerForm.$dirty">{{ 'validation.email' | translate }}</span>
-            <span class="help-block" ng-show="registerForm.userEmail.$error.minlength && registerForm.$dirty">{{ 'validation.too_short' | translate }}</span>
-            <span class="help-block" ng-show="registerForm.userEmail.$error.maxlength && registerForm.$dirty">{{ 'validation.too_long' | translate }}</span>
-          </div>
+        <div class="col-sm-3">
+          <span class="help-block" ng-show="registerForm.userUsername.$error.required && registerForm.$dirty">必填字段</span>
+          <span class="help-block" ng-show="registerForm.userUsername.$error.minlength && registerForm.$dirty">太短</span>
+          <span class="help-block" ng-show="registerForm.userUsername.$error.maxlength && registerForm.$dirty">太长</span>
+          <span class="help-block" ng-show="registerForm.userUsername.$error.pattern && registerForm.$dirty">只能包含字母、数字和_@.-</span>
         </div>
-  
-        <!-- Password -->
-        <div class="form-group" ng-class="{ 'has-error': !registerForm.userPassword.$valid && registerForm.$dirty, success: registerForm.userPassword.$valid }">
-          <label class="col-sm-2 control-label" for="inputUserPassword">{{ 'settings.user.edit.password' | translate }}</label>
-          <div class="col-sm-7">
-            <input type="password" style="display: none;"/><!-- Autofill hack -->
-            <input name="userPassword" type="password" id="inputUserPassword" required class="form-control"
-                   ng-minlength="8" ng-maxlength="50" ng-attr-placeholder="{{ 'settings.user.edit.password' | translate }}" ng-model="user.password"/>
-          </div>
-          <div class="col-sm-3">
-            <span class="help-block" ng-show="registerForm.userPassword.$error.required && registerForm.$dirty">{{ 'validation.required' | translate }}</span>
-            <span class="help-block" ng-show="registerForm.userPassword.$error.minlength && registerForm.$dirty">{{ 'validation.too_short' | translate }}</span>
-            <span class="help-block" ng-show="registerForm.userPassword.$error.maxlength && registerForm.$dirty">{{ 'validation.too_long' | translate }}</span>
-          </div>
+      </div>
+
+      <!-- 邮箱 -->
+      <div class="form-group" ng-class="{ 'has-error': !registerForm.userEmail.$valid && registerForm.$dirty, success: registerForm.userEmail.$valid }">
+        <label class="col-sm-2 control-label" for="inputEmail">电子邮箱</label>
+        <div class="col-sm-7">
+          <input name="userEmail" type="email" id="inputEmail" required class="form-control"
+                 ng-minlength="1" ng-maxlength="100" placeholder="电子邮箱" ng-model="user.email"/>
         </div>
-  
-        <!-- Password Confirm -->
-        <div class="form-group" ng-class="{ 'has-error': !registerForm.passwordconfirm.$valid && registerForm.$dirty, success: registerForm.passwordconfirm.$valid }">
-          <label class="col-sm-2 control-label" for="inputPasswordConfirm">{{ 'settings.user.edit.password_confirm' | translate }}</label>
-          <div class="col-sm-7">
-            <input name="passwordconfirm" type="password" id="inputPasswordConfirm" required class="form-control"
-                   ui-validate="'$value == user.password'" ui-validate-watch="'user.password'"
-                   ng-attr-placeholder="{{ 'settings.user.edit.password_confirm' | translate }}" ng-model="user.passwordconfirm"/>
-          </div>
-          <div class="col-sm-3">
-            <span class="help-block" ng-show="registerForm.passwordconfirm.$error.validator && registerForm.$dirty">{{ 'validation.password_confirm' | translate }}</span>
-          </div>
+        <div class="col-sm-3">
+          <span class="help-block" ng-show="registerForm.userEmail.$error.required && registerForm.$dirty">必填字段</span>
+          <span class="help-block" ng-show="registerForm.userEmail.$error.email && registerForm.$dirty">邮箱格式不正确</span>
+          <span class="help-block" ng-show="registerForm.userEmail.$error.minlength && registerForm.$dirty">太短</span>
+          <span class="help-block" ng-show="registerForm.userEmail.$error.maxlength && registerForm.$dirty">太长</span>
         </div>
-  
-        <!-- Register Button -->
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary" ng-click="edit()" ng-disabled="!editUserForm.$valid">
-                <span class="fas fa-pencil-alt"></span> {{ isEdit() ? 'save' : 'add' | translate }}
-              </button>
-          </div>
+      </div>
+
+      <!-- 密码 -->
+      <div class="form-group" ng-class="{ 'has-error': !registerForm.userPassword.$valid && registerForm.$dirty, success: registerForm.userPassword.$valid }">
+        <label class="col-sm-2 control-label" for="inputUserPassword">密码</label>
+        <div class="col-sm-7">
+          <input type="password" style="display: none;"/><!-- 防止自动填充 -->
+          <input name="userPassword" type="password" id="inputUserPassword" required class="form-control"
+                 ng-minlength="8" ng-maxlength="50" placeholder="密码" ng-model="user.password"/>
         </div>
-      </form>
-    </div>
+        <div class="col-sm-3">
+          <span class="help-block" ng-show="registerForm.userPassword.$error.required && registerForm.$dirty">必填字段</span>
+          <span class="help-block" ng-show="registerForm.userPassword.$error.minlength && registerForm.$dirty">至少需要8位</span>
+          <span class="help-block" ng-show="registerForm.userPassword.$error.maxlength && registerForm.$dirty">太长</span>
+        </div>
+      </div>
+
+      <!-- 确认密码 -->
+      <div class="form-group" ng-class="{ 'has-error': !registerForm.passwordconfirm.$valid && registerForm.$dirty, success: registerForm.passwordconfirm.$valid }">
+        <label class="col-sm-2 control-label" for="inputPasswordConfirm">确认密码</label>
+        <div class="col-sm-7">
+          <input name="passwordconfirm" type="password" id="inputPasswordConfirm" required class="form-control"
+                 ui-validate="'$value == user.password'" ui-validate-watch="'user.password'"
+                 placeholder="确认密码" ng-model="user.passwordconfirm"/>
+        </div>
+        <div class="col-sm-3">
+          <span class="help-block" ng-show="registerForm.passwordconfirm.$error.validator && registerForm.$dirty">两次输入的密码不一致</span>
+        </div>
+      </div>
+
+      <!-- 注册按钮 -->
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block" 
+                ng-click="register()" 
+                ng-disabled="registerForm.$invalid">
+          <span class="fas fa-user-plus"></span> 注册
+        </button>
+      </div>
+    </form>
   </div>
-  
+</div>
