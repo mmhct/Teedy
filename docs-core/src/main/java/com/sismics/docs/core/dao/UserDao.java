@@ -226,7 +226,7 @@ public class UserDao {
     public User getActiveByUsername(String username) {
         EntityManager em = ThreadLocalContext.get().getEntityManager();
         try {
-            Query q = em.createQuery("select u from User u where u.username = :username and u.deleteDate is null");
+            Query q = em.createQuery("select u from User u where u.username = :username");
             q.setParameter("username", username);
             return (User) q.getSingleResult();
         } catch (NoResultException e) {

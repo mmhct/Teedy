@@ -44,6 +44,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+
 /**
  * User REST resources.
  * 
@@ -102,6 +103,7 @@ public class UserResource extends BaseResource {
         user.setEmail(email);
         user.setStorageQuota(storageQuota);
         user.setOnboarding(true);
+        //user.setDisableDate(new Date());
 
         // Create the user
         UserDao userDao = new UserDao();
@@ -116,6 +118,45 @@ public class UserResource extends BaseResource {
         }
         
         // Always return OK
+        JsonObjectBuilder response = Json.createObjectBuilder()
+                .add("status", "ok");
+        return Response.ok().entity(response.build()).build();
+    }
+
+    @POST
+    @Path("register")
+    public Response registerByUser(
+        @FormParam("username") String username,
+        @FormParam("password") String password,
+        @FormParam("email") String email) {
+
+        
+        username = ValidationUtil.validateLength(username, "username", 3, 50);
+        ValidationUtil.validateUsername(username, "username");
+        password = ValidationUtil.validateLength(password, "password", 8, 50);
+        email = ValidationUtil.validateLength(email, "email", 1, 100);
+        ValidationUtil.validateEmail(email, "email");
+
+        
+        UserDao userDao = new UserDao();
+        
+
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password); 
+        user.setEmail(email);
+        user.setRoleId(Constants.DEFAULT_USER_ROLE);
+        user.setStorageQuota(10000000000L);
+        user.setOnboarding(true);
+        user.setStorageCurrent(0L);
+        user.setDisableDate(new Date()); 
+
+        try {
+            userDao.create(user, "system"); 
+        } catch (Exception e) {
+            throw new ServerException("UserCreationError", "Error creating user", e);
+        }
+
         JsonObjectBuilder response = Json.createObjectBuilder()
                 .add("status", "ok");
         return Response.ok().entity(response.build()).build();
