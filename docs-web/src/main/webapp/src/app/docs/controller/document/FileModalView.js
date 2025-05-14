@@ -4,7 +4,7 @@
  * File modal view controller.
  */
 angular.module('docs').controller('FileModalView', function ($uibModalInstance, $scope, $state, $stateParams, $sce, Restangular, $transitions, $http, $window) {
-  // 百度翻译API配置 (请替换成你自己的appid和key)
+  
   const BAIDU_TRANSLATE_APPID = '20220703001262814';
   const BAIDU_TRANSLATE_KEY = 'qPfvbTVl9I42VW2mZz0X';
   
