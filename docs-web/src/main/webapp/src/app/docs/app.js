@@ -14,8 +14,14 @@ angular.module('docs',
  * Configuring modules.
  */
 .config(function($locationProvider, $urlRouterProvider, $stateProvider, $httpProvider, $qProvider,
-                 RestangularProvider, $translateProvider, timeAgoSettings, tmhDynamicLocaleProvider) {
+                 RestangularProvider, $translateProvider, $sceDelegateProvider,timeAgoSettings, tmhDynamicLocaleProvider) {
   $locationProvider.hashPrefix('');
+  $sceDelegateProvider.resourceUrlWhitelist([
+    // 允许同源资源
+    'self',
+    // 添加百度翻译API
+    'http://api.fanyi.baidu.com/**'
+  ]);
 
   // Configuring UI Router
   $stateProvider
